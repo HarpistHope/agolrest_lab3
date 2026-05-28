@@ -18,24 +18,27 @@
         "esri/Map", 
         "esri/views/MapView",
         "esri/widgets/BasemapGallery",
-        "esri/widgets/Locate"
-      ], function(esriConfig, Map, MapView, BasemapGallery, Locate) {   
+        "esri/widgets/Locate",
+        "esri/widgets/Search"
+      ], function(esriConfig, Map, MapView, BasemapGallery, Locate, Search) {   
       
         // set API key and create map with basemap layer
         esriConfig.apiKey = "AAPTaZ2rQpZ3e_kAjLMbAoRHR0g.._fqqp4bDNHHZdzTSsp9AO-QkJHtKqpaj-7Xv25F1YGAftgihPfF0YtKx3TlgjV1fIfgz5d5KD1tO1WludBUUE8UK14qZyasG6wdcyVgej-0RvTJlT6Cqr8NSnHJs2CR-QKtZ6cx1a-DlDQQytvHfcbHYyH2--XMqzLkkWez9t3HIMhqczJVoVTeXmERX-Sc_6OCF9zTuUnAuesDvugrzl5GUAN3LGTz2Zteo1pZkcrVPu2RRO94cFDhn8pvWIVGFeUSd7-icAT1_FDhHahp4";
         const map = new Map({ 
-          basemap: "arcgis-community" // Basemap layer; I like the look of the arcgis-community basemap
+          basemap: "arcgis-community" // Challenge 2: Change intial basemap layer; I like the look of the arcgis-community basemap
         });
 
+        // Challenge 1: Set new center and zoom level
         // create map view, set center and zoom level, set container property to viewDiv
         const view = new MapView({
           map: map,
-          center: [140.75, 41.80], // Longitude, latitude - centered on Hakodate, Japan
+          center: [140.75, 41.75], // Longitude, latitude - centered on Hakodate, Japan
           container: "viewDiv", // Div element
           scale: 70000 // scale level
         });
 
 
+        // Challenge 3: add basemap gallery
         // create basic basemap gallery widget
         const basemapGallery = new BasemapGallery({
           view: view
@@ -45,12 +48,24 @@
           position: "top-right"
         });
 
+        // Challenge 4: add locate widget
         // create locate widget 
         const locateWidget = new Locate({
           view: view
         });
-        // add locate widget to the top left corner of the view
+        // add locate widget to the top left corner of the view, below other elements
         view.ui.add(locateWidget, {
+          position: "top-left",
+          index: 2
+        });
+
+        // Challenge 5: add search widget
+        // create search widget
+        const searchWidget = new Search({
+          view: view
+        });
+        // Add search widget in top left corner of the view
+        view.ui.add(searchWidget, {
           position: "top-left"
         });
 
