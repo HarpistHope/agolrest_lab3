@@ -32,7 +32,7 @@
         // create map view, set center and zoom level, set container property to viewDiv
         const view = new MapView({
           map: map,
-          center: [140.75, 41.75], // Longitude, latitude - centered on Hakodate, Japan
+          center: [140.75, 41.77], // Longitude, latitude - centered on Hakodate, Japan
           container: "viewDiv", // Div element
           scale: 70000 // scale level
         });
@@ -59,14 +59,15 @@
           index: 2
         });
 
-        // Challenge 5: add search widget
+        // Challenge 5: add search bar
         // create search widget
         const searchWidget = new Search({
           view: view
         });
-        // Add search widget in top left corner of the view
+        // Add search widget in top left corner of the view, above locate widget
         view.ui.add(searchWidget, {
-          position: "top-left"
+          position: "top-left",
+          index: 0
         });
 
       });  
