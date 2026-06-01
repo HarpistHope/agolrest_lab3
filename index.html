@@ -191,14 +191,14 @@
 
         map.add(touristAttractionsLayer);
 
-        // I downloaded the original Japan Airports shapefile from https://data.humdata.org/dataset/hotosm_jpn_airports (attribution: Source, OpenStreetMap contributors. Contributor, Humanitarian OpenStreetMap Team (HOT))
+        // I downloaded the original Japan Airports data from https://ourairports.com/countries/JP/ in csv format. I uploaded the csv to ArcGIS Online and published it as a hosted feature layer as instructed
         // set up the airport icon
         const airportRenderer = {
         "type": "simple",
         "symbol": {
           "type": "picture-marker",
           // airplane icon is from the Noun Project, attribution: Airplane by Annisa from <a href="https://thenounproject.com/browse/icons/term/airplane/" target="_blank" title="Airplane Icons">Noun Project</a> (CC BY 3.0)
-          "url": "https://github.com/HarpistHope/agol_lab/raw/main/noun-airplane-7936713.png",
+          "url": "https://raw.githubusercontent.com/HarpistHope/agol_lab/main/noun-airplane-7936713.png",
           "width": "18px",
           "height": "18px"
         }
@@ -207,7 +207,7 @@
         // Challenge 4: add in featureLayer for airports
         // add constructor for the airports feature layer
         const airportsLayer = new FeatureLayer({
-          url: "https://services.arcgis.com/HRPe58bUyBqyyiCt/arcgis/rest/services/jpn_airports_points_credit_hotosm_shp/FeatureServer",
+          url: "https://services.arcgis.com/HRPe58bUyBqyyiCt/arcgis/rest/services/jp_airports_credit_ourairports/FeatureServer",
           // call the icon
           renderer: airportRenderer
         });
