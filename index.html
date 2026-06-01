@@ -10,9 +10,28 @@
   <link rel="stylesheet" href="https://js.arcgis.com/4.25/esri/themes/light/main.css">
   <script src="https://js.arcgis.com/4.25/"></script>
 
-<!-- add require statement to call modules necessary for full screen map app -->
+  <!-- use css to style full-screen map -->
+  <style>  
+    html,  
+    body,  
+    #viewDiv {  
+      padding: 0;  
+      margin: 0;  
+      height: 100%;  
+      width: 100%;  
+    }  
+  </style> 
+
+</head>
+<body>
+
+  <!-- create div to hold the map  -->
+  <div id="viewDiv"></div> 
+
+ <!-- I moved the script to the body because the page kept erroring out trying to look for the viewDiv element from the head before parsing the body -->
   <script>  
 
+      // add require statement to call modules necessary for full screen map app 
       require([
         "esri/config", 
         "esri/Map", 
@@ -69,24 +88,6 @@
       });  
 
   </script>
-
-  <!-- use css to style full-screen map -->
-  <style>  
-    html,  
-    body,  
-    #viewDiv {  
-      padding: 0;  
-      margin: 0;  
-      height: 100%;  
-      width: 100%;  
-    }  
-  </style> 
-
-</head>
-<body>
-
-  <!-- create div to hold the map  -->
-  <div id="viewDiv"></div> 
 
 </body>
 </html>
