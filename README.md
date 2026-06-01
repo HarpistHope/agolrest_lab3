@@ -1,2 +1,2 @@
-# agol lab
-G576 lab 2, learning how to code esri js to access arcgis online data
+# AGOL REST Lab
+G576 lab 3, learning how to use REST to make edits to the AGOL dataset
