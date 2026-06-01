@@ -176,7 +176,7 @@
         // Challenge 3: add feature layer, modify popup 
         // Define a pop-up for usaeduLayer
         const popupTouristAttractions = {
-          "title": "Tourist Attractions",
+          "title": "{name}",
           "content": "<b>Amenity:</b> {amenity}<br><b>Attraction:</b> {attraction}<br><b>Description:</b> {description}<br><b>Historic:</b> {historic}<br>"
         }
 
@@ -185,7 +185,7 @@
           url: "https://services-ap1.arcgis.com/iA7fZQOnjY9D67Zx/arcgis/rest/services/OSM_AS_Tourism/FeatureServer",
         
           //add the popup here
-          outFields: ["amenity","attraction", "description", "historic"],
+          outFields: ["name", "amenity","attraction", "description", "historic"],
           popupTemplate: popupTouristAttractions
         });
 
