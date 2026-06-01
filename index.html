@@ -56,9 +56,9 @@
         const view = new MapView({
           map: map,
           // center: [140.75, 41.78], 
-          center: [140.77, 41.77], // Longitude, latitude - centered on Hakodate, Japan
+          center: [140.77, 41.78], // Longitude, latitude - centered on Hakodate, Japan
           container: "viewDiv", // Div element
-          scale: 50000
+          scale: 45000
         });
 
         // add graphicsLayer constructor
@@ -88,7 +88,7 @@
         // first, polygon geometry to represent Hakodate Station
         const polygon = {
           type: "polygon",
-          rings: [[ // approx coordinates of Hakodate Station
+          rings: [[ // makes a rectangle using approx coordinates of Hakodate Station
             [140.7250, 41.7820], 
             [140.7290, 41.7820], 
             [140.7290, 41.7730],
@@ -123,7 +123,7 @@
           width: 1.5
         }
 
-        // create popup template and define attributes for my point, polygon, and polyline
+        // create popup template and define attributes for point, polygon, and polyline
         const popupTemplate = {
             title: "{Name}",
             content: "{Description}"
@@ -167,16 +167,17 @@
           attributes: lineattributes,
           popupTemplate: popupTemplate
         })
+
         // add polygon and polyline graphics to the map
         graphicsLayer.add(polygonGraphic);
         graphicsLayer.add(polylineGraphic);
         // add point graphic last so it renders on top of the polyline
         graphicsLayer.add(pointGraphic);
 
-        // Challenge 3: add feature layer, modify popup 
+        // Challenge 3: add feature layer, modify popup content
         // Define a pop-up for usaeduLayer
         const popupTouristAttractions = {
-          "title": "{name}",
+          "title": "{name}", // in Japanese (not every feature has an English name)
           "content": "<b>English Name:</b> {name_en}<br><b>Type:</b> {tourism}<br><b>Hours:</b> {opening_hours}<br><a href='{website}' target='_blank'>Visit Website</a>"
         }
 
@@ -184,7 +185,7 @@
         const touristAttractionsLayer = new FeatureLayer({
           url: "https://services-ap1.arcgis.com/iA7fZQOnjY9D67Zx/arcgis/rest/services/OSM_AS_Tourism/FeatureServer",
         
-          //add the popup here
+          //add the popup 
           outFields: ["name", "name_en", "tourism", "opening_hours", "website"],
           popupTemplate: popupTouristAttractions
         });
@@ -192,9 +193,8 @@
         map.add(touristAttractionsLayer);
 
         // Challene 4: add in featureLayer for airports
-        // Challenge 5: add in heliport with helicoptor icon
-        
-        // I downloaded the original Japan Airports data from https://ourairports.com/countries/JP/ in csv format. I uploaded the csv to ArcGIS Online and published it as a hosted feature layer as instructed
+        // Challenge 5: add in heliport featureLayer with helicoptor icon
+        // I downloaded the original Japan Airports dataset from https://ourairports.com/countries/JP/ in csv format. I uploaded the csv to ArcGIS Online and published it as a hosted feature layer as instructed
        
         // set up the airport icon
         const airportRenderer = {
@@ -246,7 +246,7 @@
           symbol: {
             type: "text",
             color: "#311B92",
-            haloColor: "#E0F2F1", // swap color scheme from airport labels
+            haloColor: "#E0F2F1",
             haloSize: "2px",
             font: {
               size: "12px",
