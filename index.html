@@ -308,6 +308,28 @@
         symbol: myAirportPictureMarker
       };
 
+
+      // Challenge 2: add dynamic label with airport code to myAirport layer 
+      const myAirportLabels = {
+        symbol: {
+          type: "text",
+          color: "#B71C1C", // red to match myAirport icon
+          haloColor: "#FFCDD2",
+          haloSize: "2px",
+          font: {
+            size: "12px",
+            family: "Noto Sans",
+            style: "italic",
+            weight: "normal"
+          }
+        },
+
+        labelPlacement: "above-center",
+        labelExpressionInfo: {
+          expression: "$feature.AirportCode"
+        }
+      };
+
       // adding the const for the My Airports feature layer
       const myAirports = new FeatureLayer({
         url: "https://services.arcgis.com/HRPe58bUyBqyyiCt/arcgis/rest/services/MyAirports_GEOG576/FeatureServer",
@@ -316,7 +338,10 @@
         outFields: ["AirportCode"],
 
         // add symbol renderer
-        renderer: myAirportRenderer
+        renderer: myAirportRenderer,
+
+        // add labels
+        labelingInfo: [myAirportLabels]
       });
 
       // add myAirports layer to the map
