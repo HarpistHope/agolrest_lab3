@@ -58,7 +58,7 @@
           // center: [140.75, 41.78], // Longitude, latitude - centered on Hakodate, Japan
           center: [140.715, 41.765],
           container: "viewDiv", // Div element
-          scale: 20000
+          scale: 70000
         });
 
         // add graphicsLayer constructor
@@ -209,15 +209,19 @@
         const airportsLayer = new FeatureLayer({
           url: "https://services.arcgis.com/HRPe58bUyBqyyiCt/arcgis/rest/services/jp_airports_credit_ourairports/FeatureServer",
           // call the icon
-          renderer: airportRenderer
+          renderer: airportRenderer,
+          // sql filter for large airports (Hakodate Airport falls in this category)
+          definitionExpression: "type = 'large_airport'"
         });
       
         // add the airports layer to the map
         map.add(airportsLayer);
+
+         // helicoptor icon is from the Noun Project, attribution: Adrien Griveau <a href="https://thenounproject.com/icon/helicopter-1595852/" target="_blank" title="Helicopter">Noun Project</a> (CC BY 3.0)
+        // helicoptor icon: https://raw.githubusercontent.com/HarpistHope/agol_lab/main/noun-helicopter-1595852.png
       });  
 
-      // helicoptor icon is from the Noun Project, attribution: Adrien Griveau <a href="https://thenounproject.com/icon/helicopter-1595852/" target="_blank" title="Helicopter">Noun Project</a> (CC BY 3.0)
-
+     
   </script>
 
 </body>
