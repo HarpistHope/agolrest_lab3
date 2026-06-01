@@ -369,8 +369,7 @@
 
       // Add the editor widget to the view
       view.ui.add(editor, {
-        position: "top-right",
-        index: 1 // below the basemap gallery expand widget, see below
+        position: "top-right"
     });
 
       // Challenge 3a: add a legend to the map
@@ -378,8 +377,8 @@
         view: view
       });
 
-      // add legend to the bottom right corner of the view
-      view.ui.add(legend, "bottom-right");
+      // add legend to the bottom left corner of the view (so it does not overlap with the editor widget)
+      view.ui.add(legend, "bottom-left");
 
       // Challenge 3b: wrap basemap gallery widget inside the expand widget for improved UI/UX
         const basemapGallery = new BasemapGallery({
@@ -393,8 +392,8 @@
 
         // Add basemap gallery expand widget to the top right corner of the view
         view.ui.add(bmgExpand, {
-          position: "top-right",
-          index: 0 // placed above the editor widget
+          position: "top-left",
+          index: 2 // placed above the editor widget
         });
 
         // Challenge 4: add locate button
@@ -405,7 +404,7 @@
         // add locate widget to the top left corner of the view, below other elements
         view.ui.add(locateWidget, {
           position: "top-left",
-          index: 2
+          index: 1
         });
 
         // Challenge 5: add search bar
