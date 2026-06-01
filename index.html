@@ -293,12 +293,30 @@
       // add heliports layer to the map
       map.add(heliportsLayer);
 
+      // Challenge 1: Customize myAirport Layer Symbol with picture marker
+      // create the symbol/picture marker 
+      const myAirportPictureMarker = {
+      type: "picture-marker",  // autocasts as new PictureMarkerSymbol()
+      url: "https://static.arcgis.com/images/Symbols/Shapes/BlackStarLargeB.png",
+      width: "64px",
+      height: "64px"
+      };
+
+      // create a renderer using the symbol
+      const myAirportRenderer = {
+        type: "simple",
+        symbol: myAirportPictureMarker
+      };
+
       // adding the const for the My Airports feature layer
       const myAirports = new FeatureLayer({
         url: "https://services.arcgis.com/HRPe58bUyBqyyiCt/arcgis/rest/services/MyAirports_GEOG576/FeatureServer",
 
         // add airport code popup
         outFields: ["AirportCode"],
+
+        // add symbol renderer
+        renderer: myAirportRenderer
       });
 
       // add myAirports layer to the map
