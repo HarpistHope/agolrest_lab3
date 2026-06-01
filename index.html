@@ -324,11 +324,12 @@
           color: "#B71C1C", // red to match myAirport icon
           haloColor: "#FFCDD2",
           haloSize: "2px",
+          yoffset: -2, // I'm specifying the yoffset so the dynamic label doesn't drift too far below the icon
           font: {
             size: "12px",
             family: "Noto Sans",
             style: "italic",
-            weight: "normal"
+            weight: "normal",
           }
         },
 
@@ -374,7 +375,12 @@
 
       // Challenge 3a: add a legend to the map
       const legend = new Legend({
-        view: view
+        view: view,
+        layerInfos: [
+          {layer: myAirports, title: "My Airports"},
+          {layer: airportsLayer, title: "Major Airports"},
+          {layer: heliportsLayer, title: "Heliports"}
+        ]
       });
 
       // add legend to the bottom left corner of the view (so it does not overlap with the editor widget)
