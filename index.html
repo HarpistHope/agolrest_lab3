@@ -378,7 +378,9 @@
       });
 
       // add legend to the bottom left corner of the view (so it does not overlap with the editor widget)
-      view.ui.add(legend, "bottom-left");
+      view.ui.add(legend, {
+        position: "bottom-left"
+      });
 
       // Challenge 3b: wrap basemap gallery widget inside the expand widget for improved UI/UX
         const basemapGallery = new BasemapGallery({
