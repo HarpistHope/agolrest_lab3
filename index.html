@@ -197,12 +197,14 @@
         "type": "simple",
         "symbol": {
           "type": "picture-marker",
-          "url": "https://raw.githubusercontent.com/HarpistHope/agol_lab/main/flight_takeoff_24dp_000000.png",
+          // airplane icon is from the Noun Project, attribution: Airplane by Annisa from <a href="https://thenounproject.com/browse/icons/term/airplane/" target="_blank" title="Airplane Icons">Noun Project</a> (CC BY 3.0)
+          "url": "https://github.com/HarpistHope/agol_lab/raw/main/noun-airplane-7936713.png",
           "width": "18px",
           "height": "18px"
         }
       }
-        
+
+        // Challenge 4: add in featureLayer for airports
         // add constructor for the airports feature layer
         const airportsLayer = new FeatureLayer({
           url: "https://services.arcgis.com/HRPe58bUyBqyyiCt/arcgis/rest/services/jpn_airports_points_credit_hotosm_shp/FeatureServer",
@@ -213,6 +215,8 @@
         // add the airports layer to the map
         map.add(airportsLayer);
       });  
+
+      // helicoptor icon is from the Noun Project, attribution: Adrien Griveau <a href="https://thenounproject.com/icon/helicopter-1595852/" target="_blank" title="Helicopter">Noun Project</a> (CC BY 3.0)
 
   </script>
 
