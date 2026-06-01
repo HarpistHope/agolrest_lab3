@@ -195,8 +195,9 @@
           "content": "<b>English Name:</b> {name_en}<br><b>Type:</b> {tourism}<br><b>Hours:</b> {opening_hours}<br><a href='{website}' target='_blank'>Visit Website</a>"
         }
 
-        // add constructor for the tourist attractions feature layer. I accessed the layer from: https://uw-mad.maps.arcgis.com/home/item.html?id=2ebdbdd8bc9046a680c8a977949ff2e0 (credits: OpenStreetMap contributors, Steven Moore)
+        // add constructor for the tourist attractions feature layer. 
         const touristAttractionsLayer = new FeatureLayer({
+          // I downloaded the layer from AGOL. The original publisher is Steven Moore, who credits OpenStreetMap contributors for the data
           url: "https://services-ap1.arcgis.com/iA7fZQOnjY9D67Zx/arcgis/rest/services/OSM_AS_Tourism/FeatureServer",
         
           //add the popup 
@@ -206,10 +207,8 @@
 
         map.add(touristAttractionsLayer);
 
-        // Challene 4: add in featureLayer for airports
-        // Challenge 5: add in heliport featureLayer with helicoptor icon
+
         // I downloaded the original Japan Airports dataset from https://ourairports.com/countries/JP/ in csv format. I uploaded the csv to ArcGIS Online and published it as a hosted feature layer as instructed
-       
         // set up the airport icon
         const airportRenderer = {
         "type": "simple",
@@ -302,8 +301,9 @@
       // add heliports layer to the map
       map.add(heliportsLayer);
 
-      // Challenge 1: Customize myAirport Layer Symbol with picture marker
-      // create the symbol/picture marker (I used the same Noun Project airplane icon but changed the color to red with Adobe Express)
+      // Lab 3 Challenge 1: Customize myAirport Layer Symbol with picture marker
+      // create the symbol/picture marker 
+      // (I used the same Noun Project airplane icon but changed the color to red with Adobe Express) Attribution: Airplane by Annisa from <a href="https://thenounproject.com/browse/icons/term/airplane/" target="_blank" title="Airplane Icons">Noun Project</a> (CC BY 3.0)
       const myAirportPictureMarker = {
       type: "picture-marker", 
       url: "https://raw.githubusercontent.com/HarpistHope/agolrest_lab3/main/noun-airplane-7936713_editRed.png",
@@ -317,8 +317,7 @@
         symbol: myAirportPictureMarker
       };
 
-
-      // Challenge 2: add dynamic label with airport code to myAirport layer 
+      // Lab 3 Challenge 2: add dynamic label with airport code to myAirport layer 
       const myAirportLabels = {
         symbol: {
           type: "text",
@@ -333,7 +332,7 @@
           }
         },
 
-        labelPlacement: "above-center",
+        labelPlacement: "below-center", // so it doesn't overlap the full airport name label 
         labelExpressionInfo: {
           expression: "$feature.AirportCode"
         }
@@ -369,7 +368,8 @@
 
       // Add the editor widget to the view
       view.ui.add(editor, {
-        position: "top-right"
+        position: "top-right",
+        index: 0
     });
 
       // Challenge 3a: add a legend to the map
