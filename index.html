@@ -17,11 +17,9 @@
         "esri/config", 
         "esri/Map", 
         "esri/views/MapView",
-        "esri/widgets/BasemapGallery",
-        "esri/widgets/Locate",
-        "esri/widgets/Search",
-        "esri/widgets/Expand" // adding to improve basemap gallery UI/UX
-      ], function(esriConfig, Map, MapView, BasemapGallery, Locate, Search, Expand) {   
+        "esri/Graphic",
+        "esri/layers/GraphicsLayer"
+      ], function(esriConfig, Map, MapView, Graphic, GraphicsLayer) {   
       
         // set API key and create map with basemap layer
         esriConfig.apiKey = "AAPTaZ2rQpZ3e_kAjLMbAoRHR0g.._fqqp4bDNHHZdzTSsp9AO-QkJHtKqpaj-7Xv25F1YGAftgihPfF0YtKx3TlgjV1fIfgz5d5KD1tO1WludBUUE8UK14qZyasG6wdcyVgej-0RvTJlT6Cqr8NSnHJs2CR-QKtZ6cx1a-DlDQQytvHfcbHYyH2--XMqzLkkWez9t3HIMhqczJVoVTeXmERX-Sc_6OCF9zTuUnAuesDvugrzl5GUAN3LGTz2Zteo1pZkcrVPu2RRO94cFDhn8pvWIVGFeUSd7-icAT1_FDhHahp4";
@@ -29,7 +27,6 @@
           basemap: "arcgis-community" // Challenge 2: Change intial basemap; I like the look of the arcgis-community basemap
         });
 
-        // Challenge 1: Set new center and scale
         // create map view, set center and scale, set container property to viewDiv
         const view = new MapView({
           map: map,
@@ -38,44 +35,37 @@
           scale: 70000 // scale level
         });
 
-        // Challenge 3: add basemap gallery
-        // create basemap gallery widget (I put it inside the expand widget for improved UI/UX)
-        const basemapGallery = new BasemapGallery({
-          view: view
-        });
-        const bmgExpand = new Expand({
-          view: view, 
-          content: basemapGallery,
-          expandIcon: "basemap" // use basemap icon for expand widget
+        // add graphicsLayer constructor
+        const graphicsLayer = new GraphicsLayer();  
+        map.add(graphicsLayer);
+
+        // create point graphic to add to the map 
+        const point = { //Create a point  
+          type: "point",  
+          longitude: -140.7042,    // approx long lat of Mt. Hakodate
+          latitude: 41.7589
+        };
+
+        // Challenge 1: change symbol to something other than a point (I chose a triangle because my POI is a mountain)
+        // define style for the point graphic
+        const simpleMarkerSymbol = {  
+          type: "simple-marker",  
+          style: "triangle",
+          color: [80, 200, 120],  // Emerald green color
+          outline: {  
+            color: [255, 255, 255], // White  
+            width: 1.5 // increased width slightly 
+          }  
+        };
+
+        // create pointGraphic by adding geometry and symbol together
+        const pointGraphic = new Graphic({  
+          geometry: point,  
+          symbol: simpleMarkerSymbol
         });
 
-        // Add basemap gallery expand widget to the top right corner of the view
-        view.ui.add(bmgExpand, {
-          position: "top-right"
-        });
-
-        // Challenge 4: add locate button (I adapted the referenced code to match the code structure of the rest of the script)
-        // create locate widget 
-        const locateWidget = new Locate({
-          view: view
-        });
-        // add locate widget to the top left corner of the view, below other elements
-        view.ui.add(locateWidget, {
-          position: "top-left",
-          index: 2
-        });
-
-        // Challenge 5: add search bar
-        // create search widget
-        const searchWidget = new Search({
-          view: view
-        });
-        // Add search widget in top left corner of the view, above locate widget and zoom controls
-        view.ui.add(searchWidget, {
-          position: "top-left",
-          index: 0
-        });
-
+        // add point graphic to the map/graphicsLayer
+        graphicsLayer.add(pointGraphic);
       });  
 
   </script>
