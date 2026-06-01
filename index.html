@@ -177,7 +177,7 @@
         // Define a pop-up for usaeduLayer
         const popupTouristAttractions = {
           "title": "{name}",
-          "content": "<b>Amenity:</b> {amenity}<br><b>Attraction:</b> {attraction}<br><b>Description:</b> {description}<br><b>Historic:</b> {historic}<br>"
+          "content": "<b>English Name:</b> {name_en}<br><b>Type:</b> {tourism} ({amenity})<br><b>Description:</b> {description}<br><b>Historic:</b> {historic}<br><b>Hours:</b> {opening_hours}<br><a href='{website}' target='_blank'>Visit Website</a>"
         }
 
         // add constructor for the feature layer
@@ -185,7 +185,7 @@
           url: "https://services-ap1.arcgis.com/iA7fZQOnjY9D67Zx/arcgis/rest/services/OSM_AS_Tourism/FeatureServer",
         
           //add the popup here
-          outFields: ["name", "amenity","attraction", "description", "historic"],
+          outFields: ["name", "name_en", "tourism", "amenity", "description", "historic", "opening_hours", "website"],
           popupTemplate: popupTouristAttractions
         });
 
