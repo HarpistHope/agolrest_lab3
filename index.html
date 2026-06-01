@@ -83,33 +83,31 @@
         const polygon = {
           type: "polygon",
           rings: [[ // approx coordinates of Hakodate Station
-            [140.7250, 41.7800], // 1. Top Left (Back of tracks)
-            [140.7280, 41.7800], // 2. Top Right
-            [140.7280, 41.7740], // 3. Mid Right (The "notch" start)
-            [140.7265, 41.7740], // 4. Inner Corner
-            [140.7265, 41.7720], // 5. Bottom Right (Main Entrance)
-            [140.7250, 41.7720], // 6. Bottom Left
+            [140.7250, 41.7800], 
+            [140.7290, 41.7800], 
+            [140.7290, 41.7720],
+            [140.7250, 41.7720],
             [140.7250, 41.7800]// closing the polygon with the starting point
           ]]
         };
         // define style for polygon graphic
         const simplePolySymbol = {
           type: "simple-fill",
-          color: [255, 255, 255, 0.1], // added 10% transparency so I can still see the basemap underneath
+          color: [255, 255, 255, 0.9], // added slight transparency so I can still see the basemap underneath
           outline: {
             color: [32, 144, 184],
             width: 1
           } 
         }
 
-        // second, polyline geometry to represent the route from Hakodate Station to Mt. Hakodate
+        // second, polyline geometry to represent very rough route from Hakodate Station to Mt. Hakodate
         const polyline = {
           type: "polyline",
           paths: [
-            [140.726, 41.773], // Start: Hakodate Station
-            [140.720, 41.768], // Middle: Through the Red Brick Warehouse district
-            [140.715, 41.763], // Middle: Toward Jujigai
-            [140.7042, 41.7589]  // End: Mt. Hakodate
+            [140.726, 41.773], 
+            [140.720, 41.768], 
+            [140.715, 41.763], 
+            [140.7042, 41.7589] 
           ]
         }
         // style polyline graphic 
