@@ -239,7 +239,7 @@
             type: "text",
             color: "#004D40",
             haloColor: "#E0F2F1",
-            haloSize: "2px",
+            haloSize: "-5px",
             font: {
               size: "12px",
               family: "Noto Sans",
@@ -382,8 +382,16 @@
         ]
       });
 
+      // the legend is rather large, so I've wrap it in another expand widget
+      const legendExpand = new Expand({
+        view: view,
+        content: legend,
+        expandIcon: "legend",
+        group: "primary" // add to the primary group (with basemap expand) so only one widget can be open at a time
+      })
+
       // add legend to the bottom left corner of the view (so it does not overlap with the editor widget)
-      view.ui.add(legend, {
+      view.ui.add(legendExpand, {
         position: "bottom-left"
       });
 
@@ -394,7 +402,8 @@
         const bmgExpand = new Expand({
           view: view, 
           content: basemapGallery,
-          expandIcon: "basemap" // use basemap icon for expand widget
+          expandIcon: "basemap",
+          group: "primary" // add to primary group with legend expand
         });
 
         // Add basemap gallery expand widget to the top right corner of the view
