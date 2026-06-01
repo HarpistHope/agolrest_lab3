@@ -274,7 +274,6 @@
       
         // add the airports layer to the map
         map.add(airportsLayer);
-      });  
 
       // add constructor for the heliports feature layer
       const heliportsLayer = new FeatureLayer({
@@ -285,6 +284,12 @@
         definitionExpression: "type = 'heliport'",
         labelingInfo: [heliLabels] // add labels to the heliports
       });
+
+      // add heliports layer to the map
+      map.add(heliportsLayer);
+
+      });  
+
 
   </script>
 
