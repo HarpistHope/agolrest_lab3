@@ -82,26 +82,23 @@
         // first, polygon geometry to represent Hakodate Station
         const polygon = {
           type: "polygon",
-          rings: [[
-            // [140.7010, 41.7620], // approx long lat of Hakodate Station
-            // [140.7030, 41.7620],
-            // [140.7030, 41.7600],
-            // [140.7010, 41.7600],
-            // [140.7010, 41.7620] // closing the polygon with the starting point
-            [140.7250, 41.7740], 
-            [140.7280, 41.7740],
-            [140.7280, 41.7720],
-            [140.7250, 41.7720],
-            [140.7250, 41.7740] // closing the polygon with the starting point
+          rings: [[ // approx coordinates of Hakodate Station
+            [140.7250, 41.7800], // 1. Top Left (Back of tracks)
+            [140.7280, 41.7800], // 2. Top Right
+            [140.7280, 41.7740], // 3. Mid Right (The "notch" start)
+            [140.7265, 41.7740], // 4. Inner Corner
+            [140.7265, 41.7720], // 5. Bottom Right (Main Entrance)
+            [140.7250, 41.7720], // 6. Bottom Left
+            [140.7250, 41.7800]// closing the polygon with the starting point
           ]]
         };
         // define style for polygon graphic
         const simplePolySymbol = {
           type: "simple-fill",
-          color: [255, 255, 255, 0.3], // added 30% transparency so I can still see the basemap underneath
+          color: [255, 255, 255, 0.1], // added 10% transparency so I can still see the basemap underneath
           outline: {
             color: [32, 144, 184],
-            width: 1.5
+            width: 1
           } 
         }
 
@@ -112,14 +109,14 @@
             [140.726, 41.773], // Start: Hakodate Station
             [140.720, 41.768], // Middle: Through the Red Brick Warehouse district
             [140.715, 41.763], // Middle: Toward Jujigai
-            [140.704, 41.759]  // End: Mt. Hakodate Ropeway
+            [140.7042, 41.7589]  // End: Mt. Hakodate
           ]
         }
         // style polyline graphic 
         const simpleLineSymbol = {
           type: "simple-line",
           color: [32, 144, 184],
-          width: 2
+          width: 1.5
         }
 
         // create popup template and define attributes for my point, polygon, and polyline
@@ -166,12 +163,11 @@
           attributes: lineattributes,
           popupTemplate: popupTemplate
         })
-
-        // add point graphic to the map/graphicsLayer
-        graphicsLayer.add(pointGraphic);
         // add polygon and polyline graphics to the map
         graphicsLayer.add(polygonGraphic);
         graphicsLayer.add(polylineGraphic);
+        // add point graphic last so it renders on top of the polyline
+        graphicsLayer.add(pointGraphic);
       });  
 
   </script>
