@@ -74,7 +74,9 @@
         });
 
         // add graphicsLayer constructor
-        const graphicsLayer = new GraphicsLayer();  
+        const graphicsLayer = new GraphicsLayer({
+          title: "Local Landmarks Graphics"
+        });  
         map.add(graphicsLayer);
 
         // create point graphic to add to the map 
