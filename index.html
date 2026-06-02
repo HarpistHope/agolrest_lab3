@@ -28,7 +28,7 @@
   <!-- create div to hold the map  -->
   <div id="viewDiv"></div> 
 
- <!-- I moved the script to the body because the page kept erroring out trying to look for the viewDiv element from the head before parsing the body -->
+ <!-- In Lab 2, I moved the script to the body because the page kept erroring out trying to look for the viewDiv element from the head before parsing the body -->
   <script>  
 
       // add require statement to call modules necessary for full screen map app 
@@ -67,7 +67,6 @@
         // create map view, set center and scale, set container property to viewDiv
         const view = new MapView({
           map: map,
-          // center: [140.75, 41.78], 
           center: [140.77, 41.78], // Longitude, latitude - centered on Hakodate, Japan
           container: "viewDiv", // Div element
           scale: 45000
@@ -86,7 +85,6 @@
           latitude: 41.7589
         };
 
-        // Challenge 1: change symbol to something other than a point (I chose a triangle because my POI is a mountain)
         // define style for the point graphic
         const simpleMarkerSymbol = {  
           type: "simple-marker",  
@@ -98,8 +96,7 @@
           }  
         };
 
-        // Challenge 2: add polygon and polyline graphics to the map
-        // first, polygon geometry to represent Hakodate Station
+        // polygon geometry to represent Hakodate Station
         const polygon = {
           type: "polygon",
           rings: [[ // makes a rectangle using approx coordinates of Hakodate Station
@@ -121,7 +118,7 @@
           } 
         }
 
-        // second, polyline geometry to represent very rough route from Hakodate Station to Mt. Hakodate
+        // polyline geometry to represent very rough route from Hakodate Station to Mt. Hakodate
         const polyline = {
           type: "polyline",
           paths: [
@@ -199,7 +196,7 @@
 
         // add constructor for the tourist attractions feature layer. 
         const touristAttractionsLayer = new FeatureLayer({
-          // I downloaded the layer from AGOL. The original publisher is Steven Moore, who credits OpenStreetMap contributors for the data
+          // I accessed the layer from AGOL. The original publisher is Steven Moore, who credits OpenStreetMap contributors for the data
           url: "https://services-ap1.arcgis.com/iA7fZQOnjY9D67Zx/arcgis/rest/services/OSM_AS_Tourism/FeatureServer",
         
           //add the popup 
@@ -209,8 +206,7 @@
 
         map.add(touristAttractionsLayer);
 
-
-        // I downloaded the original Japan Airports dataset from https://ourairports.com/countries/JP/ in csv format. I uploaded the csv to ArcGIS Online and published it as a hosted feature layer as instructed
+        // In Lab 2, I downloaded the original Japan Airports dataset from https://ourairports.com/countries/JP/ in csv format. I uploaded the csv to ArcGIS Online and published it as a hosted feature layer as instructed
         // set up the airport icon
         const airportRenderer = {
         "type": "simple",
@@ -383,7 +379,7 @@
         position: "top-right"
     });
 
-      // Challenge 3a: add a legend to the map
+      // Lab 3 Challenge 3a: add a legend to the map
       const legend = new Legend({
         view: view,
         layerInfos: [
@@ -401,13 +397,13 @@
         group: "primary" // add to the primary group (with basemap and editor expands)
       })
 
-      // add legend to the bottom left corner of the view (so it does not overlap with the editor widget)
+      // add legendExpand 
       view.ui.add(legendExpand, {
         position: "top-right",
-        index: 1 // below editor widget, above basemap gallery
+        index: 2 // below editor and basemap gallery
       });
 
-      // Challenge 3b: wrap basemap gallery widget inside the expand widget for improved UI/UX
+      // Lab 3 Challenge 3b: wrap basemap gallery widget inside the expand widget for improved UI/UX
         const basemapGallery = new BasemapGallery({
           view: view
         });
@@ -421,10 +417,10 @@
         // Add basemap gallery expand widget to the top right corner of the view
         view.ui.add(bmgExpand, {
           position: "top-right",
-          index: 2 // placed below eidtor and legend
+          index: 1 // placed below editor, above legend
         });
 
-        // Challenge 4: add locate button
+        // Lab 3 Challenge 4: add locate button
         // create locate widget 
         const locateWidget = new Locate({
           view: view
@@ -435,7 +431,7 @@
           index: 1
         });
 
-        // Challenge 5: add search bar
+        // Lab 3 Challenge 5: add search bar
         // create search widget
         const searchWidget = new Search({
           view: view
