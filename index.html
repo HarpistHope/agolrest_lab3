@@ -374,6 +374,7 @@
         view: view,
         content: editor,
         expandIcon: "pencil", // using pencil icon to indicate editing functionality
+        index: 0, // placed above basemap and legend
         group: "primary" // add to primary group with basemap and legend expands so only one expand widget is open at a time
       })
 
@@ -402,7 +403,8 @@
 
       // add legend to the bottom left corner of the view (so it does not overlap with the editor widget)
       view.ui.add(legendExpand, {
-        position: "bottom-left"
+        position: "top-right",
+        index: 1 // below editor widget, above basemap gallery
       });
 
       // Challenge 3b: wrap basemap gallery widget inside the expand widget for improved UI/UX
@@ -418,8 +420,8 @@
 
         // Add basemap gallery expand widget to the top right corner of the view
         view.ui.add(bmgExpand, {
-          position: "top-left",
-          index: 2 // placed above the editor widget
+          position: "top-right",
+          index: 2 // placed below eidtor and legend
         });
 
         // Challenge 4: add locate button
