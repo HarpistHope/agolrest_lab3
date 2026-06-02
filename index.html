@@ -367,10 +367,18 @@
       const editor = new Editor({
       view: view,
       layerInfos: [pointInfos]
-      }); // End Editor constructor
+      }); 
+
+      // wrap editor widget in another expand widget so it doesn't dominate the map initally loads
+      const editorExpand = new Expand({
+        view: view,
+        content: editor,
+        expandIcon: "pencil", // using pencil icon to indicate editing functionality
+        group: "primary" // add to primary group with basemap and legend expands so only one expand widget is open at a time
+      })
 
       // Add the editor widget to the view
-      view.ui.add(editor, {
+      view.ui.add(editorExpand, {
         position: "top-right"
     });
 
@@ -389,7 +397,7 @@
         view: view,
         content: legend,
         expandIcon: "legend",
-        group: "primary" // add to the primary group (with basemap expand) so only one widget can be open at a time
+        group: "primary" // add to the primary group (with basemap and editor expands)
       })
 
       // add legend to the bottom left corner of the view (so it does not overlap with the editor widget)
@@ -405,7 +413,7 @@
           view: view, 
           content: basemapGallery,
           expandIcon: "basemap",
-          group: "primary" // add to primary group with legend expand
+          group: "primary" // add to primary group with legend and editor expands
         });
 
         // Add basemap gallery expand widget to the top right corner of the view
